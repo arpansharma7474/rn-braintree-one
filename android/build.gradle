@@ -1,6 +1,6 @@
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
-  def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['RnBraintree_kotlinVersion']
+  def kotlin_version = "1.4.10"
 
   repositories {
     google()
@@ -29,13 +29,13 @@ android {
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   buildToolsVersion getExtOrDefault('buildToolsVersion')
   defaultConfig {
-    minSdkVersion 16
+    minSdkVersion 21
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
     versionCode 1
     versionName "1.0"
-    
+
   }
-  
+
   buildTypes {
     release {
       minifyEnabled false
@@ -54,7 +54,6 @@ repositories {
   mavenCentral()
   jcenter()
   google()
-
   def found = false
   def defaultDir = null
   def androidSourcesName = 'React Native sources'
@@ -127,4 +126,8 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'com.braintreepayments.api:drop-in:5.0.2'
+  implementation 'com.braintreepayments.api:braintree:3.15.0'
+  implementation 'com.braintreepayments.api:three-d-secure:3.14.2'
+  implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
 }

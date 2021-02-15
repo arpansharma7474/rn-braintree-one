@@ -1,7 +1,11 @@
 import { NativeModules } from 'react-native';
 
 type RnBraintreeType = {
-  multiply(a: number, b: number): Promise<number>;
+  setToken(token: string): void;
+  getToken(): string;
+  setup(token: string): Promise<string>;
+  getCardNonce(object: Object): Promise<string>;
+  paymentRequest(object: Object): Promise<string>;
 };
 
 const { RnBraintree } = NativeModules;
