@@ -2,6 +2,7 @@ package com.rnbraintree
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.braintreepayments.api.BraintreeFragment
 import com.braintreepayments.api.Card
@@ -14,18 +15,19 @@ import com.braintreepayments.api.interfaces.BraintreeErrorListener
 import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener
 import com.braintreepayments.api.models.CardBuilder
 import com.braintreepayments.api.models.CardNonce
+import com.braintreepayments.api.models.ThreeDSecureRequest
 import com.facebook.react.bridge.*
 import com.google.gson.Gson
 import java.util.*
 
 
-class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), ActivityEventListener {
 
   override fun getName(): String {
     return "RnBraintree"
   }
 
-  private val REQUEST_CODE = 6666
+  private val REQUEST_CODE = 65000
 
   private val USER_CANCELLATION = "USER_CANCELLATION"
   private val AUTHENTICATION_UNSUCCESSFUL = "AUTHENTICATION_UNSUCCESSFUL"
@@ -34,6 +36,10 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
   private lateinit var mBraintreeFragment: BraintreeFragment
 
   private lateinit var promise: Promise
+
+  init {
+      reactContext.addActivityEventListener(this)
+  }
 
   //  private var threeDSecureOptions: ReadableMap? = null
   @ReactMethod
@@ -169,12 +175,14 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
   @ReactMethod
   fun paymentRequest(options: ReadableMap, promise: Promise) {
     this.promise = promise
+    val three = ThreeDSecureRequest()
+      .amount(options.getString("amount"))
 
     val dropInRequest = DropInRequest()
-      .vaultManager(true)
+      .threeDSecureRequest(three)
       .clientToken(token)
 
-    currentActivity!!.startActivityForResult(dropInRequest.getIntent(currentActivity), REQUEST_CODE)
+    currentActivity?.startActivityForResult(dropInRequest.getIntent(currentActivity), REQUEST_CODE)
   }
 
 //  @ReactMethod
@@ -184,7 +192,8 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
 //    PayPal.authorizeAccount(mBraintreeFragment)
 //  }
 
-  fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent) {
+  override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent) {
+    Log.e("error", " " + resultCode)
     if (requestCode == REQUEST_CODE) {
       when (resultCode) {
         Activity.RESULT_OK -> {
@@ -196,5 +205,6 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
     }
   }
 
+  override fun onNewIntent(intent: Intent?) {}
 
 }
