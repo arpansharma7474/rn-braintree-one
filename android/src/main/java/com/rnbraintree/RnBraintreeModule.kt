@@ -38,7 +38,7 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
   private lateinit var promise: Promise
 
   init {
-      reactContext.addActivityEventListener(this)
+    reactContext.addActivityEventListener(this)
   }
 
   //  private var threeDSecureOptions: ReadableMap? = null
@@ -51,7 +51,7 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
       mBraintreeFragment.addListener(BraintreeCancelListener { nonceErrorCallback(USER_CANCELLATION) })
       mBraintreeFragment.addListener(PaymentMethodNonceCreatedListener { paymentMethodNonce ->
         if (paymentMethodNonce is CardNonce) {
-          nonceCallback(paymentMethodNonce.getNonce())
+          nonceCallback(paymentMethodNonce.nonce)
         } else {
           nonceErrorCallback(AUTHENTICATION_UNSUCCESSFUL)
         }
@@ -198,7 +198,12 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
       when (resultCode) {
         Activity.RESULT_OK -> {
           val result: DropInResult = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT)
-          nonceCallback(result.toString())
+          if (result.paymentMethodNonce != null) {
+            nonceCallback(result.paymentMethodNonce?.nonce)
+          } else {
+            nonceErrorCallback("NONCE_ERROR")
+          }
+          Log.e("result", result.paymentMethodNonce?.nonce)
         }
         Activity.RESULT_CANCELED -> nonceErrorCallback("USER_CANCELLATION")
       }
