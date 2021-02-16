@@ -17,15 +17,14 @@ class RnBraintree: NSObject {
         let cardClient = BTCardClient(apiClient: braintreeClient!)
         let date = cardOptions["expirationDate"] as! String
         let monthArray = date.components(separatedBy: "/")
-        let month = monthArray.first as! String
-        let year = monthArray.last as! String
+        let month = monthArray.first!
+        let year = monthArray.last!
         
         let numberStr =  cardOptions["number"] as! String
         let cvvStr =  cardOptions["cvv"] as! String
         
-        print(month, year, numberStr, cvvStr, "Hello")
-        
         let card = BTCard(number:numberStr, expirationMonth: month, expirationYear: year, cvv: cvvStr)
+        card.shouldValidate = true
         cardClient.tokenizeCard(card) { (tokenizedCard, error) in
             if((error) != nil){
                 reject("400",error?.localizedDescription, error)
