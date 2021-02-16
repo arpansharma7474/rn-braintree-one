@@ -32,8 +32,8 @@ export default function App() {
   function onCardPress() {
     RnBraintree.getCardNonce({
       cardholderName: "Arpan Sharma",
-      number: "4111111111111111",
-      expirationDate: "10/22", // or "10/2020" or any valid date
+      number: "4111111",
+      expirationDate: "10/2020", // or "10/2020" or any valid date
       cvv: "400",
     })
       .then(res => {
