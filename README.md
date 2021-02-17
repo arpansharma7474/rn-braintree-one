@@ -88,9 +88,9 @@ npm install rn-braintree --save
 
 ### Post Install
    Run  
-    `npm install`  
-    `cd ios`  
-    `pod install`  
+      npm install  
+      cd ios  
+      pod install  
     
    If not successful, refer [Braintree docs](https://developers.braintreepayments.com/guides/drop-in/setup-and-integration/android/v3)
 
