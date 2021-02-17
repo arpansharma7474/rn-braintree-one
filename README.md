@@ -1,12 +1,16 @@
 # rn-braintree
 
-This package provides latest iOS and Android Braintree SDK support for React Native.
+This package provides latest iOS(v4) and Android(v3) Braintree SDK support for React Native.
 
 ## Installation
 
 ```sh
-npm install rn-braintree
+npm install rn-braintree --save
 ```
+
+### iOS 
+
+
 
 ## Usage
 
