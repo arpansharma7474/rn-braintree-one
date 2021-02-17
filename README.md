@@ -66,25 +66,33 @@ npm install rn-braintree --save
   - In project `build.gradle`  
       Update  
 
-         `dependencies {`  
-             `classpath("com.android.tools.build:gradle:3.5.4")`  
-             `...`  
-         `}`  
+         dependencies {
+             classpath("com.android.tools.build:gradle:3.5.4")  
+             ...  
+         }  
 
       And  
+      
+         allprojects {  
+         repositories {  
+           mavenLocal()  
+            maven {  
+              url  "https://cardinalcommerce.bintray.com/android"  
+              credentials {  
+              username 'braintree-team-sdk@cardinalcommerce'  
+              password '220cc9476025679c4e5c843666c27d97cfb0f951'  
+              }  
+            }  
+           ...  
+           }
 
-         `allprojects {`  
-         `repositories {`  
-           `mavenLocal()`  
-            `maven {`  
-              `url  "https://cardinalcommerce.bintray.com/android"`  
-              `credentials {`  
-              `username 'braintree-team-sdk@cardinalcommerce'`  
-              `password '220cc9476025679c4e5c843666c27d97cfb0f951'`  
-              `}`  
-            `}`  
-           `...`  
-           `}`
+### Post Install
+   Run  
+    `npm install`  
+    `cd ios`  
+    `pod install`  
+    
+   If not successful, refer [Braintree docs](https://developers.braintreepayments.com/guides/drop-in/setup-and-integration/android/v3)
 
 ## Usage
 
