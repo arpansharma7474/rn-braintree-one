@@ -37,7 +37,7 @@ npm install rn-braintree --save
      `flipper_post_install(installer)`  
      `end`  
 
-    - Remove the following lines from AppDelegate.m
+  - Remove the following lines from AppDelegate.m
       `#if DEBUG`  
       `#import <FlipperKit/FlipperClient.h>`  
       `#import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>`  
@@ -55,23 +55,23 @@ npm install rn-braintree --save
       `[client start];`  
       `}`  
       `#endif`  
-      and  
+    and  
       `#if DEBUG`  
       `InitializeFlipper(application);`  
       `#endif`  
 
  ### Android  
   
-    - Update the minSdkVersion to atleast 21 in the `app/build.gradle` file  
-    - In project `build.gradle`  
-        Update  
+  - Update the minSdkVersion to atleast 21 in the `app/build.gradle` file  
+  - In project `build.gradle`  
+      Update  
 
          `dependencies {`  
              `classpath("com.android.tools.build:gradle:3.5.4")`  
              `...`  
          `}`  
 
-        And  
+      And  
 
          `allprojects {`  
          `repositories {`  
