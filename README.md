@@ -17,9 +17,9 @@ npm install rn-braintree --save
 
  ### iOS  
  - Open Podfile and add following line below `platform :ios, '9.0'`
-  ```
-  use_modular_headers!
-  ```
+    ```
+    use_modular_headers!
+    ```
  - Update 
  
   `pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'`  
