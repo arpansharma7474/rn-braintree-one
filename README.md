@@ -60,6 +60,8 @@ npm install rn-braintree --save
       `InitializeFlipper(application);`  
       `#endif`  
 
+  - This package uses Swift for which you need to add Swift file to your project
+
  ### Android  
   
   - Update the minSdkVersion to atleast 21 in the `app/build.gradle` file  
