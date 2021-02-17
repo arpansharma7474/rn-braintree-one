@@ -175,11 +175,14 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
   @ReactMethod
   fun paymentRequest(options: ReadableMap, promise: Promise) {
     this.promise = promise
-    val three = ThreeDSecureRequest()
+    val threeDSecureOptions = ThreeDSecureRequest()
       .amount(options.getString("amount"))
+      .versionRequested(ThreeDSecureRequest.VERSION_2)
 
     val dropInRequest = DropInRequest()
-      .threeDSecureRequest(three)
+      .vaultManager(false)
+      .requestThreeDSecureVerification(true)
+      .threeDSecureRequest(threeDSecureOptions)
       .clientToken(token)
 
     currentActivity?.startActivityForResult(dropInRequest.getIntent(currentActivity), REQUEST_CODE)

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Platform } from 'react-native';
 import RnBraintree from 'rn-braintree'
 
 export default function App() {
@@ -17,10 +17,9 @@ export default function App() {
 
   function onPaymentPress() {
     RnBraintree.paymentRequest({
-      bgColor: 'white',
-      tintColor: 'black',
-      callToActionText: 'Pay',
-      amount: "2",
+      bgColor: '#FF0000',
+      tintColor: '#0000FF',
+      amount: "20"
     })
       .then(res => {
         console.log("Success in onPaymentPress", res)
