@@ -5,7 +5,7 @@ This package provides latest iOS(v4) and Android(v3) Braintree SDK support for R
 ## Installation
 
 ```sh
-npm install rn-braintree --save
+npm install rn-braintree-one --save
 ```
 
 ### Linking
