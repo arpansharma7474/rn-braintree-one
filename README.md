@@ -60,7 +60,15 @@ npm install rn-braintree --save
       `InitializeFlipper(application);`  
       `#endif`  
 
-  - This package uses Swift for which you need to add Swift file to your project
+  - This package uses Swift for which you need to add Swift file to your Xcode project.
+    - Open your project in Xcode.
+    - File → New → File… (or CMD+N)
+    - Select Swift File
+    - Name your file 'Swift' File.
+    - In the Group dropdown, make sure to select the group 'Your App Name', not the project itself. 
+    - After you create the Swift file, you should be prompted to choose if you want to configure an Objective-C Bridging Header. Select “Create Bridging Header”.
+    - This file is usually named YourProject-Bridging-Header.h. Don’t change this name manually, because Xcode configures the project with this exact filename.
+    - Clean and Rebuild Project
 
  ### Android  
   
@@ -101,10 +109,48 @@ npm install rn-braintree --save
 ```js
 import RnBraintree from "rn-braintree";
 
-// ...
+// Initialize package
+  RnBraintree.setup('your client Token')
+  .then((res) => {
+    console.log('Success in setup', res)
+  })
+  .catch((err) => {
+    console.log('Error in setup', err)
+  });
 
-const result = await RnBraintree.multiply(3, 7);
+// Show Payment Screen (Android & iOS)
+
+  RnBraintree.paymentRequest({
+  bgColor: '#FF0000',
+  tintColor: '#0000FF',
+  amount: '20'
+  })
+  .then((res) => {
+    console.log('Success in onPaymentPress', res)
+  })
+  .catch((err) => {
+    console.log('Error in onPaymentPress', err)
+  });
+ 
+ // Card Tokenization
+  RnBraintree.getCardNonce({
+  cardholderName: 'Test User',
+  number: '4111111111111111',
+  expirationDate: '10/2020', // or "10/2020" or any valid date
+  cvv: '400',
+  })
+  .then((res) => {
+    console.log('Success in onCardPress', res)
+  })
+  .catch((err) => {
+    console.log('Error in onCardPress', err)
+  });
 ```
+
+## Why was this package created?
+This package wasc created due to unavailability of a reliable Braintree package for latest Android and iOS SDK package. Google Play Store rejected our Android app for using old Braintree SDK version (2). If you also face this issue ('Your app(s) are using an unsafe implementation of the HostnameVerifier interface'), you can use this package.
+
+Please let us know of your comments and feedback.
 
 ## Contributing
 
