@@ -84,7 +84,7 @@ class RnBraintree: NSObject {
                         if (error != nil) {
                             reject("400", error?.localizedDescription, error)
                         } else if (result?.isCancelled == true) {
-                            reject("400", "Request Cancelled", nil)
+                            reject("401", "Request Cancelled", nil)
                         } else if let result = result {
                             print("SUCCESS", result)
                             resolve(result.paymentMethod?.nonce)

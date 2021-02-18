@@ -176,12 +176,10 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
   fun paymentRequest(options: ReadableMap, promise: Promise) {
     this.promise = promise
     val threeDSecureOptions = ThreeDSecureRequest()
-      .amount(options.getString("amount"))
-      .versionRequested(ThreeDSecureRequest.VERSION_2)
+      .amount("22")
 
     val dropInRequest = DropInRequest()
       .vaultManager(false)
-      .requestThreeDSecureVerification(true)
       .threeDSecureRequest(threeDSecureOptions)
       .clientToken(token)
 
@@ -196,7 +194,7 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
 //  }
 
   override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent) {
-    Log.e("error", " " + resultCode)
+    Log.e("error", " " + resultCode )
     if (requestCode == REQUEST_CODE) {
       when (resultCode) {
         Activity.RESULT_OK -> {
