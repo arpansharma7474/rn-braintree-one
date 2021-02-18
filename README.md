@@ -1,4 +1,4 @@
-# rn-braintree
+# rn-braintree-one
 
 This package provides latest iOS(v4) and Android(v3) Braintree SDK support for React Native.
 
@@ -107,7 +107,7 @@ npm install rn-braintree-one --save
 ## Usage
 
 ```js
-import RnBraintree from "rn-braintree";
+import RnBraintree from "rn-braintree-one";
 
 // Initialize package
   RnBraintree.setup('your client Token')

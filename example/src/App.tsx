@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import RnBraintree from 'rn-braintree';
+import RnBraintree from 'rn-braintree-one';
 
 export default function App() {
   React.useEffect(() => {

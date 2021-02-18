@@ -54,7 +54,7 @@ target 'RnBraintreeExample' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :modular_headers => false
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec', :modular_headers => false
 
-  pod 'rn-braintree', :path => '../..'
+  pod 'rn-braintree-one', :path => '../..'
 
   use_native_modules!
 
