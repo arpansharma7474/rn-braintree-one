@@ -198,9 +198,9 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
 //    PayPal.authorizeAccount(mBraintreeFragment)
 //  }
 
-  override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent) {
+  override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
     Log.e("error", " " + resultCode)
-    if (requestCode == REQUEST_CODE) {
+    if (requestCode == REQUEST_CODE && data != null) {
       when (resultCode) {
         Activity.RESULT_OK -> {
           val result: DropInResult = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT)
