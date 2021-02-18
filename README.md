@@ -148,7 +148,7 @@ import RnBraintree from "rn-braintree";
 ```
 
 ## Why was this package created?
-This package wasc created due to unavailability of a reliable Braintree package for latest Android and iOS SDK package. Google Play Store rejected our Android app for using old Braintree SDK version (2). If you also face this issue ('Your app(s) are using an unsafe implementation of the HostnameVerifier interface'), you can use this package.
+This package was created due to unavailability of a reliable Braintree package for latest Android and iOS SDK's. Google Play Store rejected our Android app for using old Braintree SDK version (2). If you also face this issue (`Your app(s) are using an unsafe implementation of the HostnameVerifier interface`), you can use this package.
 
 Please let us know of your comments and feedback.
 
