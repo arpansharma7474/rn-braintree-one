@@ -200,7 +200,11 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
 
   override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
     Log.e("error", " " + resultCode)
-    if (requestCode == REQUEST_CODE && data != null) {
+    if (requestCode == REQUEST_CODE) {
+      if (data == null) {
+        nonceErrorCallback("USER_CANCELLATION")
+        return
+      }
       when (resultCode) {
         Activity.RESULT_OK -> {
           val result: DropInResult = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT)
