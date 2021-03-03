@@ -97,6 +97,10 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
 
   @ReactMethod
   fun getCardNonce(parameters: ReadableMap, promise: Promise) {
+    if (!this::mBraintreeFragment.isInitialized) {
+      promise.reject(InvalidArgumentException("Client Token is Invalid. Please check and retry!"))
+      return
+    }
     this.promise = promise
     val cardBuilder = CardBuilder()
       .validate(true)
@@ -174,6 +178,10 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
 
   @ReactMethod
   fun paymentRequest(options: ReadableMap, promise: Promise) {
+    if (!this::mBraintreeFragment.isInitialized) {
+      promise.reject(InvalidArgumentException("Client Token is Invalid. Please check and retry!"))
+      return
+    }
     this.promise = promise
     val threeDSecureOptions = ThreeDSecureRequest()
       .amount(options.getString("amount"))
