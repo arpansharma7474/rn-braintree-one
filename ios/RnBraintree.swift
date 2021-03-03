@@ -11,17 +11,23 @@ class RnBraintree: NSObject {
     @objc(setup:withResolver:withRejecter:)
     func setup(token: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         braintreeClient = BTAPIClient(authorization : token)
-        clientToken = token
         if(braintreeClient == nil){
             reject("400","Error in Braintree Initialize", nil)
         }
         else{
+            clientToken = token
             resolve("Braintree Initialized Successfully")
         }
     }
     
     @objc(getCardNonce:withResolver:withRejecter:)
     func getCardNonce(cardOptions: NSDictionary, resolve: @escaping RCTPromiseResolveBlock,reject: @escaping RCTPromiseRejectBlock) -> Void {
+        
+        if(self.clientToken == nil){
+            reject("400", "Client Token is Invalid. Please check and retry!", nil)
+            return
+        }
+        
         let cardClient = BTCardClient(apiClient: braintreeClient!)
         let date = cardOptions["expirationDate"] as! String
         let monthArray = date.components(separatedBy: "/")
@@ -59,6 +65,12 @@ class RnBraintree: NSObject {
 //        if(tintColor != nil){
 //            BTUIKAppearance.sharedInstance().tintColor = returnUIColor(components: tintColor!)
 //        }
+        
+        if(self.clientToken == nil){
+            reject("400", "Client Token is Invalid. Please check and retry!", nil)
+            return
+        }
+        
         let amount = paymentOptions["amount"] as! String
         
         let formatter = NumberFormatter()
