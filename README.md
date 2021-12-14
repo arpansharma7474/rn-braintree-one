@@ -88,9 +88,9 @@ npm install rn-braintree-one --save
             mavenLocal()  
             maven {
                url "https://cardinalcommerceprod.jfrog.io/artifactory/android"
-              credentials {
-                username 'braintree_team_sdk'
-                password 'AKCp8jQcoDy2hxSWhDAUQKXLDPDx6NYRkqrgFLRc3qDrayg6rrCbJpsKKyMwaykVL8FWusJpp'
+                credentials {
+                  username 'braintree_team_sdk'
+                  password 'AKCp8jQcoDy2hxSWhDAUQKXLDPDx6NYRkqrgFLRc3qDrayg6rrCbJpsKKyMwaykVL8FWusJpp'
                 }  
             }
            ...  

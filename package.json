@@ -1,6 +1,6 @@
 {
   "name": "rn-braintree-one",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package provides latest iOS and Android Braintree SDK support for React Native.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
