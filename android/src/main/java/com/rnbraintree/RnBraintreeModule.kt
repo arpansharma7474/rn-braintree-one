@@ -103,7 +103,9 @@ class RnBraintreeModule(reactContext: ReactApplicationContext) : ReactContextBas
     }
     this.promise = promise
     val cardBuilder = CardBuilder()
-      .validate(true)
+      .validate(false)
+
+    if (parameters.hasKey("shouldValidateCard")) cardBuilder.validate(parameters.getBoolean("shouldValidateCard"))
     if (parameters.hasKey("number")) cardBuilder.cardNumber(parameters.getString("number"))
     if (parameters.hasKey("cvv")) cardBuilder.cvv(parameters.getString("cvv"))
 
