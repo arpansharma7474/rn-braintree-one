@@ -38,7 +38,9 @@ class RnBraintree: NSObject {
         let cvvStr =  cardOptions["cvv"] as! String
         
         let card = BTCard(number:numberStr, expirationMonth: month, expirationYear: year, cvv: cvvStr)
-        card.shouldValidate = true
+        if let shouldValidateCard = cardOptions["shouldValidateCard"] as? Bool {
+            card.shouldValidate = shouldValidateCard
+        }
         cardClient.tokenizeCard(card) { (tokenizedCard, error) in
             if((error) != nil){
                 reject("400",error?.localizedDescription, error)
