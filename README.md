@@ -138,6 +138,7 @@ import RnBraintree from "rn-braintree-one";
   number: '4111111111111111',
   expirationDate: '10/2020', // or "10/2020" or any valid date
   cvv: '400',
+  shouldValidateCard : true // optional : Braintree checks for card validity if true
   })
   .then((res) => {
     console.log('Success in onCardPress', res)
